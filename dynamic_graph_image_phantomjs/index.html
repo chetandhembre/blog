@@ -1,0 +1,31 @@
+    <!doctype html >
+    <html>
+        <head>
+            <link rel="stylesheet" type="text/css" href="css/razorflow.min.css">
+            <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+            <script type="text/javascript" src="js/jquery.min.js"></script>
+            <script type="text/javascript" src="js/razorflow.min.js"></script>
+            <script type="text/javascript">
+              function chart1() {
+                StandaloneDashboard(function(db){
+                var data = JSON.parse(window.data)
+                 var chart = new ChartComponent(data['caption']);
+	chart.setDimensions (7, 7);
+	chart.setCaption(data['caption']);
+	chart.setLabels (data['labels']);
+	chart.addSeries (data["series"]["id"], data["series"]["name"], data["series"]["seriesData"], {
+		seriesDisplayType: "line"
+	});
+	
+	chart.setYAxis(data["yaxis"]["label"], {numberPrefix: data["yaxis"]["numberPrefix"], numberHumanize: true});
+	db.addComponent (chart);
+    });
+              }
+
+            </script>
+        </head>  
+        <body id="body">
+          <div id="dbTarget" style="position:relative;" class="rf">
+          </div> 
+        </body>
+    </html>
